@@ -1,0 +1,51 @@
+<div class="container centroAbs">
+  <div class="caja ">
+    <div class="row">
+      <h3 class="titulo">BIENVENIDO A NUESTRA SUCURSAL VIRTUAL</h3>
+    </div>
+    <div class="row">
+      <div class="imgCenter">
+        <img
+          src="assets/LogosGestora/gestoraCirculo.png"
+          class="logoCirculo"
+        />
+      </div>
+
+      <div class="">
+        <div class="box">
+          <label for="" class="label1"> 
+            <i class="fas fa-id-card"></i> Forma de identificación:</label
+          >
+          <select class="form-select form-control">
+            <option
+              *ngFor="let item of listaFormaIdentificacion"
+              value="{{ item.nom }}"
+            >
+              {{ item.nom }}
+            </option>
+            <option selected disabled>Selecciona una opción</option>
+          </select>
+          <br /><br>
+          <div style="margin-top: 20px;">
+            <input type="number" name="" class="form-control" required />
+            <label for="" class="">
+              <i class="fas fa-id-card-alt"></i> Numero de
+              identificación:</label
+            >
+          </div>
+          <br />
+          <div style="margin-top: 20px;">
+            <input type="password" name="" class="form-control" required />
+            <label for="inputPassword4"
+              ><i class="fas fa-lock"></i> PIN o contraseña</label
+            >
+          </div>
+
+          <button type="button" class="btn w-100 botonSubmit" value="submit">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

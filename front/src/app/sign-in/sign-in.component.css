@@ -1,0 +1,85 @@
+.centroAbs {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoCirculo {
+  width: 90%;
+  max-width: 200px;
+}
+.box {
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1;
+}
+
+.box div {
+  position: relative;
+}
+.box div label {
+  position: absolute;
+  top: 6px;
+  pointer-events: none;
+  left: 10px;
+  color: #003d62;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.box input:focus ~ label,
+.box input:valid ~ label {
+  top: -25px;
+  left: 0;
+  color: #003d62;
+  font-size: 16px;
+  font-weight: bold;
+
+  padding: 0 7px;
+}
+.label1 {
+  left: 0;
+  color: #003d62;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 7px;
+}
+.box input:focus,
+.box input:valid,
+.box select:valid {
+  border-bottom: 5px solid #003d62;
+}
+
+.imgCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0%;
+}
+.titulo {
+  color: #003d62;
+  font-weight: 700;
+  margin: auto;
+}
+.caja {
+  background-color: rgba(81, 138, 174, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0, 2, 2, 0.45);
+}
+.form-select,
+.form-control,
+::placeholder {
+  color: #003d62;
+  font-weight: 600;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.botonSubmit{
+  margin-top: 15px;
+  background-color: #003d62;
+  color: white;
+
+}

@@ -1,0 +1,4 @@
+Avance 05Crud  006 Creando el componente  ............ terminado
+06/03/2022
+No quiere mapear para Sweet alert
+Avance 08   ............ terminado
