@@ -2,3 +2,8 @@ Avance 05Crud  006 Creando el componente  ............ terminado
 06/03/2022
 No quiere mapear para Sweet alert
 Avance 08   ............ terminado
+//
+//07/03/2022
+09 Validando form
+Video o2
+No dio en el postMan
