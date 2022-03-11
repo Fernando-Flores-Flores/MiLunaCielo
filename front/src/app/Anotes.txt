@@ -7,3 +7,5 @@ Avance 08   ............ terminado
 09 Validando form
 Video o2
 No dio en el postMan
+ Video 10 Ttransmando datos del observable 004 Uso del pipe para fecha
+ Siguiente 005

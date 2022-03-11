@@ -114,6 +114,12 @@
     </div>
 </div> -->
 
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+
 <div class="card bg-dark text-white">
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
@@ -125,16 +131,18 @@
             type="text"
             class="form-control"
             [(ngModel)]="usuarioFront.nombre"
-            name="nombre" required minlength="3"
+            name="nombre"
+
             #nombre="ngModel"
-          />
-          <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-            <div *ngIf="nombre.errors['required']">
-              Nombre es requerido
-           </div>
-           <div *ngIf="nombre.errors['minlength']">
-            Nombre debe tener al mennos 3 caracteres
-         </div>
+          /><!--   required  minlength="3" -->
+          <div
+            class="alert alert-danger"
+            *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+          >
+            <div *ngIf="nombre.errors['required']">Nombre es requerido</div>
+            <div *ngIf="nombre.errors['minlength']">
+              Nombre debe tener al mennos 3 caracteres
+            </div>
           </div>
         </div>
       </div>
@@ -184,7 +192,7 @@
             role="button"
             (click)="create()"
             class="btn btn-primary"
-            *ngIf="!usuarioFront.id;else elseBlock"
+            *ngIf="!usuarioFront.id; else elseBlock"
             [disabled]="!usuarioForm.form.valid"
           >
             Crear

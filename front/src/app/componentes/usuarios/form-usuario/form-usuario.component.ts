@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class FormUsuarioComponent implements OnInit {
   titulo: string = 'Crear usuarios';
   usuarioFront: Usuario = new UsuarioFr();
-
+  public errores: string[];
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
@@ -24,9 +24,8 @@ export class FormUsuarioComponent implements OnInit {
   }
   res: any;
   create(): void {
-    this.usuarioService
-      .crearUsuario(this.usuarioFront)
-      .subscribe((json) => {
+    this.usuarioService.crearUsuario(this.usuarioFront).subscribe(
+      (json) => {
         this.router.navigate(['/user']);
         console.log(json);
 
@@ -35,7 +34,13 @@ export class FormUsuarioComponent implements OnInit {
           `Clientes ${json.mensaje}   ${json.user}creado con éxito!`,
           'success'
         );
-      });
+      },
+      (err) => {
+        this.errores = err.error.errors as string[];
+        console.error(err.error.errors);
+        console.error('Código del error desde el backend: ' + err.status);
+      }
+    );
   }
 
   cargarClienteEnPantalla(): void {
@@ -50,16 +55,21 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   actualizar(): void {
-    this.usuarioService
-      .updateEditar(this.usuarioFront)
-      .subscribe((response) => {
+    this.usuarioService.updateEditar(this.usuarioFront).subscribe(
+      (response) => {
         this.router.navigate(['/user']);
         Swal.fire(
           'Usuario actualizado',
           `Usuario ${response.nombre} actualizado con exito!`,
           'success'
         );
-      });
+      },
+      (err) => {
+        this.errores = err.error.errors as string[];
+        console.error(err.error.errors);
+        console.error('Código del error desde el backend: ' + err.status);
+      }
+    );
   }
 }
 export class UsuarioFr {

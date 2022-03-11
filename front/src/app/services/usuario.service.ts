@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Usuario } from '../interface/usuario.interfaces';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,19 @@ export class UsuarioService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getUsuario(): Observable<Usuario[]> {
-    return this.http
-      .get(this.urlEndPoint)
-      .pipe(map((resp) => resp as Usuario[]));
+    return this.http.get(this.urlEndPoint).pipe(
+      map((resp) => {
+        let usuarioMap = resp as Usuario[];
+        return usuarioMap.map((usuarioM) => {
+          usuarioM.nombre = usuarioM.nombre.toUpperCase();
+          /*           usuarioM.createAt=formatDate(usuarioM.createAt, 'dd-MM-yyyy','en-US'); Fecha dia mes año */
+          /* let datePipe = new DatePipe('en-US');
+usuarioM.createAt== datePipe.transform(usuarioM.createAt, 'dd/MM/yyyy'); */
+
+          return usuarioM;
+        });
+      })
+    );
   }
   private httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
@@ -27,8 +38,11 @@ export class UsuarioService {
         headers: this.httpHeaders,
       })
       .pipe(
-  /*       map((response: any) => response.usuario as UsuarioFr), */
+        /*       map((response: any) => response.usuario as UsuarioFr), */
         catchError((e) => {
+          if (e.status == 400) {
+            return throwError(e);
+          }
           console.error(e.error.mensaje);
           Swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
@@ -57,6 +71,9 @@ export class UsuarioService {
       )
       .pipe(
         catchError((e) => {
+          if (e.status == 400) {
+            return throwError(e);
+          }
           console.error(e.error.mensaje);
           Swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
