@@ -32,7 +32,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let usuario of usuarios">
-          <td>{{ usuario.id }}</td>
+          <td> <button class="btn btn-success" [routerLink]="['/usuarios/ver',usuario.id]">{{ usuario.id }}</button> </td>
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apePaterno }}</td>
           <td>{{ usuario.apeMaterno }}</td>
@@ -60,5 +60,6 @@
         </tr>
       </tbody>
     </table>
+    <app-paginator *ngIf="paginadorUsuario" [paginador]="paginadorUsuario" ></app-paginator>
   </div>
 </div>

@@ -1,6 +1,5 @@
 import { UsuarioService } from './../../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../../interface/usuario.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -11,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class FormUsuarioComponent implements OnInit {
   titulo: string = 'Crear usuarios';
-  usuarioFront: Usuario = new UsuarioFr();
+  usuarioFront: Usuario = new Usuario();
   public errores: string[];
   constructor(
     private usuarioService: UsuarioService,
@@ -47,7 +46,7 @@ export class FormUsuarioComponent implements OnInit {
     this.activatedRoute.params.subscribe((parametros) => {
       let id = parametros['id'];
       if (id) {
-        this.usuarioService.getCliente(id).subscribe((responseUsuario) => {
+        this.usuarioService.getUsuario(id).subscribe((responseUsuario) => {
           this.usuarioFront = responseUsuario;
         });
       }
@@ -72,10 +71,11 @@ export class FormUsuarioComponent implements OnInit {
     );
   }
 }
-export class UsuarioFr {
+export class Usuario {
   id: number;
   nombre: string;
   apePaterno: string;
   apeMaterno: string;
   email: string;
+  foto:string;
 }

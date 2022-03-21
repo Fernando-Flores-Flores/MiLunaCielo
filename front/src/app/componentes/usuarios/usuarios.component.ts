@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/interface/usuario.interfaces';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../services/usuario.service';
-import { UsuarioFr } from './form-usuario/form-usuario.component';
+import { Usuario } from './form-usuario/form-usuario.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -75,16 +75,29 @@ export class UsuariosComponent implements OnInit {
       email: 'nassflores9@gmail.com',
     }, */
   ];
-  constructor(private UsuarioService: UsuarioService) {}
+  paginadorUsuario:any;
+  constructor(
+    private UsuarioService: UsuarioService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.UsuarioService.getUsuario().subscribe((usuario) => {
-      this.usuarios = usuario;
-      console.log(usuario);
+    this.activatedRoute.paramMap.subscribe((params) => {
+      let page: number = +params.get('page');
+      if (!page == null) {
+        page = 0;
+      }
+      this.UsuarioService.getUsuarios(page).subscribe((resp: any) => {
+        this.usuarios = resp.content as Usuario[];
+        this.paginadorUsuario= resp
+
+
+
+      });
     });
   }
 
-  delete(usuario: UsuarioFr): void {
+  delete(usuario: Usuario): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -104,7 +117,6 @@ export class UsuariosComponent implements OnInit {
         reverseButtons: true,
       })
       .then((result) => {
-
         if (result.value) {
           this.UsuarioService.elimianrUsuario(usuario.id).subscribe(
             (response) => {

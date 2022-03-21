@@ -5,13 +5,13 @@
 package com.bo.miLunaCielo.back.models.dao;
 
 import com.bo.miLunaCielo.back.models.entity.Usuario;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Fernando
  */
-public interface IUsuarioDao extends CrudRepository<Usuario, Long>{
+public interface IUsuarioDao extends JpaRepository<Usuario, Long>{
 
     
 }

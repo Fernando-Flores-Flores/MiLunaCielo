@@ -1,0 +1,45 @@
+<!-- <ul *ngIf="paginas?.length > 0" class="pagination" style="overflow: scroll"> -->
+<ul *ngIf="paginas?.length > 0" class="pagination">
+  <li class="page-item" *ngIf="paginador.number > 0">
+    <a class="page-link" [routerLink]="['/user/page/', paginador.number - 1]"
+      >&laquo;
+    </a>
+  </li>
+  <li [ngClass]="paginador.number == 0 ? 'disabled page.item' : 'page-item'">
+    <a class="page-link" [routerLink]="['/user/page/', 0]">Primera </a>
+  </li>
+  <li
+    class="page-item"
+    *ngFor="let numeroPagina of paginas"
+    [ngClass]="numeroPagina - 1 == paginador.number ? 'active' : ''"
+  >
+    <span class="page-link" *ngIf="numeroPagina - 1 == paginador.number">{{
+      numeroPagina
+    }}</span>
+    <a
+      class="page-link"
+      *ngIf="numeroPagina - 1 != paginador.number"
+      [routerLink]="['/user/page/', numeroPagina - 1]"
+    >
+      {{ numeroPagina }}
+    </a>
+  </li>
+  <li
+    [ngClass]="
+      paginador.number == paginador.totalPages - 1
+        ? 'disabled page.item'
+        : 'page-item'
+    "
+  >
+    <a
+      class="page-link"
+      [routerLink]="['/user/page/', paginador.totalPages - 1]"
+      >Ultima
+    </a>
+  </li>
+  <li class="page-item" *ngIf="paginador.number < paginador.totalPages - 1">
+    <a class="page-link" [routerLink]="['/user/page/', paginador.number + 1]"
+      >&raquo;
+    </a>
+  </li>
+</ul>

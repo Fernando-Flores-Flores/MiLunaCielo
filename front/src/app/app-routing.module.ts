@@ -9,6 +9,7 @@ import { ProgressComponent } from './pages/progress/progress.component';
 import { Graficas1Component } from './pages/graficas1/graficas1.component';
 import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { FormUsuarioComponent } from './componentes/usuarios/form-usuario/form-usuario.component';
+import { DetalleComponent } from './componentes/usuarios/detalle/detalle.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,11 @@ const routes: Routes = [
       { path: 'progress', component: ProgressComponent },
       { path: 'grafica1', component: Graficas1Component },
       { path: 'user', component: UsuariosComponent },
+      { path: 'user/page/:page', component: UsuariosComponent },
       { path: 'usuarios/formUsuario', component: FormUsuarioComponent },
       { path: 'usuarios/formUsuario/:id', component: FormUsuarioComponent },
+      { path: 'usuarios/ver/:id', component: DetalleComponent },
+
       /*       { path: '', redirectTo: '/usuarios/formUsuario', pathMatch: 'full' }, */
       { path: '', redirectTo: '/user', pathMatch: 'full' },
 

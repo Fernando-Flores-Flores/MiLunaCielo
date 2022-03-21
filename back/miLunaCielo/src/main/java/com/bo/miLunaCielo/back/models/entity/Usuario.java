@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
     private Long id;
 
     @NotEmpty(message = "no puede estar vacio")
-    @Size(min=3, max=12, message="el tamaño tiene que estar entre 3 y 12")
+    @Size(min = 3, max = 12, message = "el tamaño tiene que estar entre 3 y 12")
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
     @Column(name = "ape_materno")
     private String apeMaterno;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = false)
     @NotEmpty(message = "no puede estar vacio")
     @Email(message = "no es una dirección de correo bien formada")
     private String email;
@@ -82,6 +82,17 @@ public class Usuario implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String foto;
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
+    
     private static final long serialVersionUID = 1L;
 }
