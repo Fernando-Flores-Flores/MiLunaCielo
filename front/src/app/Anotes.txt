@@ -9,3 +9,8 @@ Video o2
 No dio en el postMan
  Video 10 Ttransmando datos del observable 004 Uso del pipe para fecha
  Siguiente 005
+
+
+
+//20/03/2022
+007 Implementando la subida de archivo en el front-end terminado, errores en mostrar al hacer otro click en el botton subir
